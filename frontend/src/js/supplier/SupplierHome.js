@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -114,7 +113,6 @@ const images = [
 
 export default function Home(){
     console.log("SUPPLIER HOME");
-    const [openFood, setOpenFood] = React.useState(false);
     const [openSave, setOpenSave] = React.useState(false);
 
     const handleClickOpenSave = () => {
@@ -138,7 +136,7 @@ export default function Home(){
     const [checkedr, setCheckedr] = React.useState(false);
     const [checkedt, setCheckedt] = React.useState(false);
     const [checkedd, setCheckedd] = React.useState(false);
-
+    const [checkedfit, setCheckedfit] = React.useState(false);
 
     const handleChangeFastFood = (event) => {
         setCheckedff(event.target.checked);
@@ -181,6 +179,9 @@ export default function Home(){
     };
     const handleChangeDepStore = (event) => {
         setCheckedd(event.target.checked);
+    };
+    const handleChangeFitnessGym = (event) => {
+        setCheckedfit(event.target.checked);
     };
 
 
@@ -304,8 +305,11 @@ export default function Home(){
                                     onChange={handleChangeJuice}
                                     inputProps={{ 'aria-label': 'juice' }}/>
                             </TableCell>
-                            <TableCell >
-
+                            <TableCell> Fitness Gym
+                                <Checkbox
+                                    checked={checkedfit}
+                                    onChange={handleChangeFitnessGym}
+                                    inputProps={{ 'aria-label': 'fitnessGym' }}/>
                             </TableCell>
                             <TableCell >Grocery Store
                                 <Checkbox
