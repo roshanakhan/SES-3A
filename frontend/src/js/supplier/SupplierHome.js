@@ -9,6 +9,15 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
+import Checkbox from '@material-ui/core/Checkbox';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import SaveIcon from '@material-ui/icons/Save';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
             width: '25ch',
         },
     },
+
     image: {
         position: 'relative',
         height: 200,
@@ -89,12 +99,10 @@ const images = [
         url: 'https://media-exp1.licdn.com/dms/image/C4E1BAQEsM9i7d4AXQg/company-background_10000/0?e=2159024400&v=beta&t=Q7IUN3ypEGz2t1xfsdg9t9bglxVgiOJ0V0WoPzAIZQw',
         title: 'Food',
         width: '30%',
-
-
     },
     {
         url: 'https://www.spellbrand.com/wp-content/uploads/2012/12/beauty-salon-spa-business1.jpg',
-        title: 'Beauty Service',
+        title: 'Service',
         width: '30%',
     },
     {
@@ -107,43 +115,85 @@ const images = [
 export default function Home(){
     console.log("SUPPLIER HOME");
     const [openFood, setOpenFood] = React.useState(false);
-    const [openBeauty, setOpenBeauty] = React.useState(false);
-    const [openRetail, setOpenRetail] = React.useState(false);
+    const [openSave, setOpenSave] = React.useState(false);
 
-    const handleClickOpenFood = () => {
-        setOpenFood(true);
+    const handleClickOpenSave = () => {
+        setOpenSave(true);
+    };
+    const handleCloseSave = () => {
+        setOpenSave(false);
     };
 
-    const handleCloseFood = () => {
-        setOpenFood(false);
+    const [checkedff, setCheckedff] = React.useState(false);
+    const [checkedc, setCheckedc] = React.useState(false);
+    const [checkedb, setCheckedb] = React.useState(false);
+    const [checkedh, setCheckedh] = React.useState(false);
+    const [checkedcl, setCheckedcl] = React.useState(false);
+    const [checkeds, setCheckeds] = React.useState(false);
+    const [checkeda, setCheckeda] = React.useState(false);
+    const [checkedm, setCheckedm] = React.useState(false);
+    const [checkedp, setCheckedp] = React.useState(false);
+    const [checkedj, setCheckedj] = React.useState(false);
+    const [checkedg, setCheckedg] = React.useState(false);
+    const [checkedr, setCheckedr] = React.useState(false);
+    const [checkedt, setCheckedt] = React.useState(false);
+    const [checkedd, setCheckedd] = React.useState(false);
+
+
+    const handleChangeFastFood = (event) => {
+        setCheckedff(event.target.checked);
+    };
+    const handleChangeCafe = (event) => {
+        setCheckedc(event.target.checked);
+    };
+    const handleChangeBakery = (event) => {
+        setCheckedb(event.target.checked);
+    };
+    const handleChangeHair = (event) => {
+        setCheckedh(event.target.checked);
+    };
+    const handleChangeClothing = (event) => {
+        setCheckedcl(event.target.checked);
+    };
+    const handleChangeSkin = (event) => {
+        setCheckeds(event.target.checked);
+    };
+    const handleChangeAccessories = (event) => {
+        setCheckeda(event.target.checked);
+    };
+    const handleChangeMakeup = (event) => {
+        setCheckedm(event.target.checked);
+    };
+    const handleChangePharmacy = (event) => {
+        setCheckedp(event.target.checked);
+    };
+    const handleChangeJuice = (event) => {
+        setCheckedj(event.target.checked);
+    };
+    const handleChangeGrocery = (event) => {
+        setCheckedg(event.target.checked);
+    };
+    const handleChangeRestaurant = (event) => {
+        setCheckedr(event.target.checked);
+    };
+    const handleChangeTechStore = (event) => {
+        setCheckedt(event.target.checked);
+    };
+    const handleChangeDepStore = (event) => {
+        setCheckedd(event.target.checked);
     };
 
-    const handleClickOpenBeauty = () => {
-        setOpenBeauty(true);
-    };
-
-    const handleCloseBeauty = () => {
-        setOpenBeauty(false);
-    };
-
-    const handleClickOpenRetail = () => {
-        setOpenRetail(true);
-    };
-
-    const handleCloseRetail = () => {
-        setOpenRetail(false);
-    };
 
     const classes = useStyles();
     return(
-
-        <div align={"center"}>
+        <div className={classes.image}>
+        <div >
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             SUPPLIER
             <br></br>{'\n'}<br></br>
             What type of businesses do you supply to?<br></br><br></br>
-/////////////////////////////
+
             <div className={classes.root}>
                 {images.map((image) => (
                     <ButtonBase
@@ -176,114 +226,165 @@ export default function Home(){
                     </ButtonBase>
                 ))}
             </div>
-////////////////////////////////////////////////////////
             <div>
+                <TableContainer align={'center'} >
+                    <Table  aria-label="customized table">
+                        <TableHead>
+                            <TableRow >
+                                <TableCell>Choose Food options</TableCell>
+                                <TableCell>Choose Service Options</TableCell>
+                                <TableCell>Choose Retail Options</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableRow >
+                            <TableCell >Fast Food
+                                <Checkbox
+                                    checked={checkedff}
+                                    onChange={handleChangeFastFood}
+                                    inputProps={{ 'aria-label': 'fastFood' }}/>
+                            </TableCell>
+                            <TableCell >Hair
+                                <Checkbox
+                                    checked={checkedh}
+                                    onChange={handleChangeHair}
+                                    inputProps={{ 'aria-label': 'hair' }}/>
+                            </TableCell>
+                            <TableCell >Clothing/ Shoes
+                                <Checkbox
+                                    checked={checkedcl}
+                                    onChange={handleChangeClothing}
+                                    inputProps={{ 'aria-label': 'clothing' }}/>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow >
+                            <TableCell >Café
+                                <Checkbox
+                                    checked={checkedc}
+                                    onChange={handleChangeCafe}
+                                    inputProps={{ 'aria-label': 'cafe' }}/>
+                            </TableCell>
+                            <TableCell >Dermatology
+                                <Checkbox
+                                    checked={checkeds}
+                                    onChange={handleChangeSkin}
+                                    inputProps={{ 'aria-label': 'skin' }}/>
+                            </TableCell>
+                            <TableCell >Accessories
+                                <Checkbox
+                                    checked={checkeda}
+                                    onChange={handleChangeAccessories}
+                                    inputProps={{ 'aria-label': 'accessories' }}/>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow >
+                            <TableCell >Bakery
+                                <Checkbox
+                                    checked={checkedb}
+                                    onChange={handleChangeBakery}
+                                    inputProps={{ 'aria-label': 'bakery' }}/>
+                            </TableCell>
+                            <TableCell >Makeup
+                                <Checkbox
+                                    checked={checkedm}
+                                    onChange={handleChangeMakeup}
+                                    inputProps={{ 'aria-label': 'makeup' }}/>
+                            </TableCell>
+                            <TableCell >Pharmacy
+                                <Checkbox
+                                    checked={checkedp}
+                                    onChange={handleChangePharmacy}
+                                    inputProps={{ 'aria-label': 'pharmacy' }}/>
+                            </TableCell>
 
-                <Button variant="contained" color="primary" onClick={handleClickOpenFood}>
-                    Food
-                </Button>
-                <Dialog open={openFood} onClose={handleCloseFood} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Business Kind</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            What kinds of food businesses do you supply to?
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button variant="contained" color="primary" onClick={handleCloseFood}>
-                            Fast Food
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseFood}>
-                            Café
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseFood}>
-                            Bakery
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseFood}>
-                            Drinks/ Juice
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseFood}>
-                            Restaurant
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                        </TableRow>
+                        <TableRow >
+                            <TableCell >Drinks/ Juice
+                                <Checkbox
+                                    checked={checkedj}
+                                    onChange={handleChangeJuice}
+                                    inputProps={{ 'aria-label': 'juice' }}/>
+                            </TableCell>
+                            <TableCell >
 
-                <br></br>{'\n'}<br></br>
+                            </TableCell>
+                            <TableCell >Grocery Store
+                                <Checkbox
+                                    checked={checkedg}
+                                    onChange={handleChangeGrocery}
+                                    inputProps={{ 'aria-label': 'grocery' }}/>
+                            </TableCell>
+                        </TableRow>
 
+                            <TableCell >Restaurant
+                                <Checkbox
+                                    checked={checkedr}
+                                    onChange={handleChangeRestaurant}
+                                    inputProps={{ 'aria-label': 'restaurant' }}/>
+                            </TableCell>
 
-                <Button variant="contained" color="primary" onClick={handleClickOpenBeauty}>
-                    Beauty Service
-                </Button>
-                <Dialog open={openBeauty} onClose={handleCloseBeauty} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Business Kind</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            What kinds of Beauty businesses do you supply to?
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button variant="contained" color="primary" onClick={handleCloseBeauty}>
-                            Hair
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseBeauty}>
-                            Skin/ Dermatology
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseBeauty}>
-                            Makeup
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseBeauty}>
-                            All
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                        <TableCell>
 
-                <br></br>{'\n'}<br></br>
+                        </TableCell>
+                        <TableCell >Tech Store
+                            <Checkbox
+                                checked={checkedt}
+                                onChange={handleChangeTechStore}
+                                inputProps={{ 'aria-label': 'techstore' }}/>
+                        </TableCell>
+                        <TableRow>
+                            <TableCell >
 
+                            </TableCell>
+                            <TableCell>
+                            </TableCell>
+                            <TableCell >Department Store
+                                <Checkbox
+                                    checked={checkedd}
+                                    onChange={handleChangeDepStore}
+                                    inputProps={{ 'aria-label': 'department' }}/>
+                            </TableCell>
+                        </TableRow>
 
-                <Button variant="contained" color="primary" onClick={handleClickOpenRetail}>
-                    Retail
-                </Button>
-                <Dialog open={openRetail} onClose={handleCloseRetail} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Business Kind</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            What kinds of Retail businesses do you supply to?
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button variant="contained" color="primary" onClick={handleCloseRetail}>
-                            Clothing/ Shoes/ Accessories
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseRetail}>
-                            Pharmacy/ Drugstore
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseRetail}>
-                            Grocery/ Convenient Store
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseRetail}>
-                            Tech Store
-                        </Button>
-                        <Button variant="contained" color="primary" onClick={handleCloseRetail}>
-                            Department Store
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-
-                <br></br>{'\n'}<br></br>
+                        <TableBody>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
 
             </div>
+            <div className={classes.image} align={'center'}>
 
-            <div>
-                <form noValidate autoComplete="off">
-                    <TextField label="Other" variant="outlined" />
-                </form>
                 {'\n'}<br></br>
-                <Button variant="contained" color="primary">
-                    Continue
-                </Button>
-            </div>
 
+
+            <Button onClick={handleClickOpenSave}
+                variant="contained"
+                color="primary"
+                size="large"
+                startIcon={<SaveIcon />}
+            >
+                Save Options
+            </Button>
+                <Dialog open={openSave} onClose={handleCloseSave} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Save Options</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Do you wish to save these options?
+                            Options can be changed again in Account
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button variant="contained" color="primary" startIcon={<SaveIcon />} onClick={handleCloseSave}>
+                            Save
+                        </Button>
+
+                    </DialogActions>
+                </Dialog>
+                <br></br>
+            </div>
+            <br></br>
         </div>
+        </div>
+
 
     );
 }
