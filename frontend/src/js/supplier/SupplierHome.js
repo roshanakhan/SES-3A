@@ -238,102 +238,102 @@ export default function Home(){
                             </TableRow>
                         </TableHead>
                         <TableRow >
-                            <TableCell >Fast Food
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedff}
                                     onChange={handleChangeFastFood}
-                                    inputProps={{ 'aria-label': 'fastFood' }}/>
+                                    inputProps={{ 'aria-label': 'fastFood' }}/>Fast Food
                             </TableCell>
-                            <TableCell >Hair
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedh}
                                     onChange={handleChangeHair}
-                                    inputProps={{ 'aria-label': 'hair' }}/>
+                                    inputProps={{ 'aria-label': 'hair' }}/>Hair
                             </TableCell>
-                            <TableCell >Clothing/ Shoes
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedcl}
                                     onChange={handleChangeClothing}
-                                    inputProps={{ 'aria-label': 'clothing' }}/>
+                                    inputProps={{ 'aria-label': 'clothing' }}/>Clothing/ Shoes
                             </TableCell>
                         </TableRow>
                         <TableRow >
-                            <TableCell >Café
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedc}
                                     onChange={handleChangeCafe}
-                                    inputProps={{ 'aria-label': 'cafe' }}/>
+                                    inputProps={{ 'aria-label': 'cafe' }}/>Café
                             </TableCell>
-                            <TableCell >Dermatology
+                            <TableCell >
                                 <Checkbox
                                     checked={checkeds}
                                     onChange={handleChangeSkin}
-                                    inputProps={{ 'aria-label': 'skin' }}/>
+                                    inputProps={{ 'aria-label': 'skin' }}/>Dermatology
                             </TableCell>
-                            <TableCell >Accessories
+                            <TableCell >
                                 <Checkbox
                                     checked={checkeda}
                                     onChange={handleChangeAccessories}
-                                    inputProps={{ 'aria-label': 'accessories' }}/>
+                                    inputProps={{ 'aria-label': 'accessories' }}/>Accessories
                             </TableCell>
                         </TableRow>
                         <TableRow >
-                            <TableCell >Bakery
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedb}
                                     onChange={handleChangeBakery}
-                                    inputProps={{ 'aria-label': 'bakery' }}/>
+                                    inputProps={{ 'aria-label': 'bakery' }}/>Bakery
                             </TableCell>
-                            <TableCell >Makeup
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedm}
                                     onChange={handleChangeMakeup}
-                                    inputProps={{ 'aria-label': 'makeup' }}/>
+                                    inputProps={{ 'aria-label': 'makeup' }}/>Makeup
                             </TableCell>
-                            <TableCell >Pharmacy
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedp}
                                     onChange={handleChangePharmacy}
-                                    inputProps={{ 'aria-label': 'pharmacy' }}/>
+                                    inputProps={{ 'aria-label': 'pharmacy' }}/>Pharmacy
                             </TableCell>
 
                         </TableRow>
                         <TableRow >
-                            <TableCell >Drinks/ Juice
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedj}
                                     onChange={handleChangeJuice}
-                                    inputProps={{ 'aria-label': 'juice' }}/>
+                                    inputProps={{ 'aria-label': 'juice' }}/>Drinks/ Juice
                             </TableCell>
-                            <TableCell> Fitness Gym
+                            <TableCell>
                                 <Checkbox
                                     checked={checkedfit}
                                     onChange={handleChangeFitnessGym}
-                                    inputProps={{ 'aria-label': 'fitnessGym' }}/>
+                                    inputProps={{ 'aria-label': 'fitnessGym' }}/>Fitness Gym
                             </TableCell>
-                            <TableCell >Grocery Store
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedg}
                                     onChange={handleChangeGrocery}
-                                    inputProps={{ 'aria-label': 'grocery' }}/>
+                                    inputProps={{ 'aria-label': 'grocery' }}/>Grocery Store
                             </TableCell>
                         </TableRow>
 
-                            <TableCell >Restaurant
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedr}
                                     onChange={handleChangeRestaurant}
-                                    inputProps={{ 'aria-label': 'restaurant' }}/>
+                                    inputProps={{ 'aria-label': 'restaurant' }}/>Restaurant
                             </TableCell>
 
                         <TableCell>
 
                         </TableCell>
-                        <TableCell >Tech Store
+                        <TableCell >
                             <Checkbox
                                 checked={checkedt}
                                 onChange={handleChangeTechStore}
-                                inputProps={{ 'aria-label': 'techstore' }}/>
+                                inputProps={{ 'aria-label': 'techstore' }}/>Tech Store
                         </TableCell>
                         <TableRow>
                             <TableCell >
@@ -341,11 +341,11 @@ export default function Home(){
                             </TableCell>
                             <TableCell>
                             </TableCell>
-                            <TableCell >Department Store
+                            <TableCell >
                                 <Checkbox
                                     checked={checkedd}
                                     onChange={handleChangeDepStore}
-                                    inputProps={{ 'aria-label': 'department' }}/>
+                                    inputProps={{ 'aria-label': 'department' }}/>Department Store
                             </TableCell>
                         </TableRow>
 
