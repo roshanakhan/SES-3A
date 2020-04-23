@@ -371,8 +371,6 @@ export default function Home(){
                             <Button onClick={handleCloseOptions}
                                     variant="contained"
                                     color="primary"
-                                    size="large"
-                                    startIcon={<SaveIcon />}
                             >
                                 Save Options
                             </Button>
