@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -15,82 +15,180 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import SaveIcon from '@material-ui/icons/Save';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import SearchIcon from '@material-ui/icons/Search';
+import Toolbar from '@material-ui/core/Toolbar';
+import InputBase from '@material-ui/core/InputBase';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
             margin: theme.spacing(1),
-            width: '25ch',
+            width: '100%',
         },
     },
 
-    image: {
-        position: 'relative',
-        height: 200,
-        [theme.breakpoints.down('xs')]: {
-            width: '100% !important',
-            height: 100,
-        },
-        '&:hover, &$focusVisible': {
-            zIndex: 1,
-            '& $imageBackdrop': {
-                opacity: 0.15,
-            },
-            '& $imageMarked': {
-                opacity: 0,
-            },
-            '& $imageTitle': {
-                border: '4px solid currentColor',
-            },
+    rootGrid: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
+    },
+    gridList: {
+        width: "auto",
+        height: "auto",
+        transform: 'translateZ(0)',
+    },
+    titleBar: {
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    },
+    icon: {
+        color: 'white',
+    },
+
+    root1: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+
+    },
+    title: {
+        flexGrow: 1,
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'block',
+
         },
     },
-    focusVisible: {},
-    imageButton: {
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(1),
+    },
+    search: {
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: fade(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: fade(theme.palette.common.white, 0.25),
+        },
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(1),
+            width: 'auto',
+        },
+    },
+    searchIcon: {
+        padding: theme.spacing(0, 2),
+        height: '100%',
         position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
+        pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: theme.palette.common.white,
     },
-    imageSrc: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 40%',
+    inputRoot: {
+        color: 'inherit',
     },
-    imageBackdrop: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        backgroundColor: theme.palette.common.black,
-        opacity: 0.4,
-        transition: theme.transitions.create('opacity'),
-    },
-    imageTitle: {
-        position: 'relative',
-        padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) + 6}px`,
-    },
-    imageMarked: {
-        height: 3,
-        width: 18,
-        backgroundColor: theme.palette.common.white,
-        position: 'absolute',
-        bottom: -2,
-        left: 'calc(50% - 9px)',
-        transition: theme.transitions.create('opacity'),
+    inputInput: {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            width: '12ch',
+            '&:focus': {
+                width: '20ch',
+            },
+        },
     },
 
+
+        image: {
+            position: 'relative',
+            height: 200,
+            [theme.breakpoints.down('xs')]: {
+                width: '100% !important',
+                height: 100,
+            },
+            '&:hover, &$focusVisible': {
+                zIndex: 1,
+                '& $imageBackdrop': {
+                    opacity: 0.15,
+                },
+                '& $imageMarked': {
+                    opacity: 0,
+                },
+                '& $imageTitle': {
+                    border: '4px solid currentColor',
+                },
+            },
+        },
+        focusVisible: {},
+        imageButton: {
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: theme.palette.common.white,
+        },
+        imageSrc: {
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 40%',
+        },
+        imageBackdrop: {
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            backgroundColor: theme.palette.common.black,
+            opacity: 0.4,
+            transition: theme.transitions.create('opacity'),
+        },
+        imageTitle: {
+            position: 'relative',
+            padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) + 6}px`,
+        },
+        imageMarked: {
+            height: 3,
+            width: 18,
+            backgroundColor: theme.palette.common.white,
+            position: 'absolute',
+            bottom: -2,
+            left: 'calc(50% - 9px)',
+            transition: theme.transitions.create('opacity'),
+        },
 }));
 
 const images = [
@@ -111,10 +209,78 @@ const images = [
     },
 ];
 
+const tileData = [
+    {
+        img: 'https://material-ui.com/static/images/grid-list/breakfast.jpg',
+        title: 'Breakfast',
+        author: 'jill111',
+        cols: 2,
+        featured: true,
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/burgers.jpg',
+        title: 'Tasty burger',
+        author: 'director90',
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/camera.jpg',
+        title: 'Camera',
+        author: 'Danson67',
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/morning.jpg',
+        title: 'Morning',
+        author: 'fancycrave1',
+        featured: true,
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/hats.jpg',
+        title: 'Hats',
+        author: 'Hans',
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/honey.jpg',
+        title: 'Honey',
+        author: 'fancycravel',
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg',
+        title: 'Vegetables',
+        author: 'jill111',
+        cols: 2,
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/plant.jpg',
+        title: 'Water plant',
+        author: 'BkrmadtyaKarki',
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/mushroom.jpg',
+        title: 'Mushrooms',
+        author: 'PublicDomainPictures',
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/olive.jpg',
+        title: 'Olive oil',
+        author: 'congerdesign',
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/star.jpg',
+        title: 'Sea star',
+        cols: 2,
+        author: '821292',
+    },
+    {
+        img: 'https://material-ui.com/static/images/grid-list/bike.jpg',
+        title: 'Bike',
+        author: 'danfador',
+    },
+];
+
 export default function Home(){
     console.log("VENDOR HOME");
     const [openSave, setOpenSave] = React.useState(false);
-    const [openOptions, setOpenOptions] = React.useState(true);
+    const [openOptions, setOpenOptions] = React.useState(false);
 
     const handleClickOpenOptions = () => {
         setOpenOptions(true);
@@ -185,26 +351,81 @@ export default function Home(){
         setCheckedfit(event.target.checked);
     };
 
+    const [sortBy, setSortBy] = React.useState('min');
+
+    const handleChange = (event) => {
+        setSortBy(event.target.value);
+    };
 
     const classes = useStyles();
     return(
-        <div className={classes.image}>
+        <div >
             <div >
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-                BUSINESS OWNER
-                <br></br>{'\n'}<br></br>
-                <Button onClick={handleClickOpenOptions}
-                        variant="contained"
-                        color="primary"
-                >
-                    Change Business Options
-                </Button>
+                <AppBar position="static">
+                <Tabs
+                    color="primary"
+                >Change Business Options
+                    <Tab label="Change Business Options" onClick={handleClickOpenOptions}/>
+                    <Tab icon={<FavoriteIcon />} aria-label="favorite" />
+                    <Tab label="" />
+                    <div>
+                        <FormControl className={classes.formControl} >
+                            <InputLabel  >Sort By</InputLabel>
+                            <Select
+                                value={sortBy}
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={"min"}>Price Low</MenuItem>
+                                <MenuItem value={"max"}>Price High</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                    <Toolbar>
+                        <div className={classes.search}>
+                            <div className={classes.searchIcon}>
+                                <SearchIcon />
+                            </div>
+                            <InputBase
+                                placeholder="Search…"
+                                classes={{
+                                    root1: classes.inputRoot,
+                                    input: classes.inputInput,
+                                }}
+                                inputProps={{ 'aria-label': 'search' }}
+                            />
+                        </div>
+                    </Toolbar>
+                </Tabs>
+
+            </AppBar>
+                <div className={classes.rootGrid} style={{width: 'auto', height: 'auto'}}>
+                    <GridList cellHeight={200} spacing={1} className={classes.gridList} cols={3}>
+                        {tileData.map(tile => (
+                            <GridListTile key={tile.img} >
+                                <img src={tile.img} alt={tile.title} />
+                                <GridListTileBar
+                                    title={tile.title}
+                                    titlePosition="top"
+                                    actionIcon={
+                                        <IconButton aria-label={`favourite ${tile.title}`} className={classes.icon}>
+                                            <FavoriteIcon />
+                                        </IconButton>
+                                    }
+                                    actionPosition="left"
+                                    className={classes.titleBar}
+                                />
+                            </GridListTile>
+                        ))}
+                    </GridList>
+                </div>
+
                 <Dialog open={openOptions} onClose={handleCloseOptions} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Change Business Options</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            What kind of businesses do run/ plan to run?
+                            What kind of businesses do you run/ plan to run?
                             <div className={classes.root}>
                                 {images.map((image) => (
                                     <ButtonBase
@@ -362,29 +583,15 @@ export default function Home(){
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
-
                             </div>
                             <div align={'center'}>
 
                                 {'\n'}<br></br>
-
-
                                 <Button onClick={handleCloseOptions}
                                         variant="contained"
                                         color="primary"
-                                >
-                                    Save Options
+                                >Save Options
                                 </Button>
-                                <Dialog open={openSave} onClose={handleCloseOptions} aria-labelledby="form-dialog-title">
-                                    <DialogTitle id="form-dialog-title">Save Options</DialogTitle>
-                                    <DialogContent>
-                                        <DialogContentText>
-                                            Do you wish to save these options?
-                                            Options can be changed again in Home
-                                        </DialogContentText>
-                                    </DialogContent>
-
-                                </Dialog>
                                 <br></br>
                             </div>
                         </DialogContentText>
@@ -393,7 +600,6 @@ export default function Home(){
                 <br></br>
             </div>
         </div>
-
 
     );
 }

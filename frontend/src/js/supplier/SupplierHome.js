@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
             margin: theme.spacing(1),
-            width: '25ch',
+            width: '100%',
         },
     },
 
@@ -114,7 +114,7 @@ const images = [
 export default function Home(){
     console.log("SUPPLIER HOME");
     const [openSave, setOpenSave] = React.useState(false);
-    const [openOptions, setOpenOptions] = React.useState(true);
+    const [openOptions, setOpenOptions] = React.useState(false);
 
     const handleClickOpenOptions = () => {
         setOpenOptions(true);
@@ -194,6 +194,7 @@ export default function Home(){
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             SUPPLIER
             <br></br>{'\n'}<br></br>
+
             <Button onClick={handleClickOpenOptions}
                     variant="contained"
                     color="primary"
@@ -221,8 +222,8 @@ export default function Home(){
                   backgroundImage: `url(${image.url})`,
               }}
           />
-                                    <span className={classes.imageBackdrop} />
-                                    <span className={classes.imageButton}>
+          <span className={classes.imageBackdrop} />
+          <span className={classes.imageButton}>
             <Typography
                 component="span"
                 variant="subtitle1"
@@ -367,23 +368,11 @@ export default function Home(){
 
                             {'\n'}<br></br>
 
-
                             <Button onClick={handleCloseOptions}
                                     variant="contained"
                                     color="primary"
-                            >
-                                Save Options
+                            >Save Options
                             </Button>
-                            <Dialog open={openSave} onClose={handleCloseOptions} aria-labelledby="form-dialog-title">
-                                <DialogTitle id="form-dialog-title">Save Options</DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText>
-                                        Do you wish to save these options?
-                                        Options can be changed again in Home
-                                    </DialogContentText>
-                                </DialogContent>
-
-                            </Dialog>
                             <br></br>
                         </div>
                     </DialogContentText>
