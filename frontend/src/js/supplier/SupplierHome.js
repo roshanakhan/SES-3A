@@ -114,12 +114,13 @@ const images = [
 export default function Home(){
     console.log("SUPPLIER HOME");
     const [openSave, setOpenSave] = React.useState(false);
+    const [openOptions, setOpenOptions] = React.useState(true);
 
-    const handleClickOpenSave = () => {
-        setOpenSave(true);
+    const handleClickOpenOptions = () => {
+        setOpenOptions(true);
     };
-    const handleCloseSave = () => {
-        setOpenSave(false);
+    const handleCloseOptions = () => {
+        setOpenOptions(false);
     };
 
     const [checkedff, setCheckedff] = React.useState(false);
@@ -193,27 +194,35 @@ export default function Home(){
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
             SUPPLIER
             <br></br>{'\n'}<br></br>
-            What type of businesses do you supply to?<br></br><br></br>
-
-            <div className={classes.root}>
-                {images.map((image) => (
-                    <ButtonBase
-                        focusRipple
-                        key={image.title}
-                        className={classes.image}
-                        focusVisibleClassName={classes.focusVisible}
-                        style={{
-                            width: image.width,
-                        }}
-                    >
+            <Button onClick={handleClickOpenOptions}
+                    variant="contained"
+                    color="primary"
+            >Change Supplier Options
+            </Button>
+            <Dialog open={openOptions} onClose={handleCloseOptions} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Change Supplier Options</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        What kind of businesses do you supply to?
+                        <div className={classes.root}>
+                            {images.map((image) => (
+                                <ButtonBase
+                                    focusRipple
+                                    key={image.title}
+                                    className={classes.image}
+                                    focusVisibleClassName={classes.focusVisible}
+                                    style={{
+                                        width: image.width,
+                                    }}
+                                >
           <span
               className={classes.imageSrc}
               style={{
                   backgroundImage: `url(${image.url})`,
               }}
           />
-                        <span className={classes.imageBackdrop} />
-                        <span className={classes.imageButton}>
+                                    <span className={classes.imageBackdrop} />
+                                    <span className={classes.imageButton}>
             <Typography
                 component="span"
                 variant="subtitle1"
@@ -224,167 +233,164 @@ export default function Home(){
                 <span className={classes.imageMarked} />
             </Typography>
           </span>
-                    </ButtonBase>
-                ))}
-            </div>
-            <div>
-                <TableContainer align={'center'} >
-                    <Table  aria-label="customized table">
-                        <TableHead>
-                            <TableRow >
-                                <TableCell>Choose Food options</TableCell>
-                                <TableCell>Choose Service Options</TableCell>
-                                <TableCell>Choose Retail Options</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableRow >
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedff}
-                                    onChange={handleChangeFastFood}
-                                    inputProps={{ 'aria-label': 'fastFood' }}/>Fast Food
-                            </TableCell>
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedh}
-                                    onChange={handleChangeHair}
-                                    inputProps={{ 'aria-label': 'hair' }}/>Hair
-                            </TableCell>
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedcl}
-                                    onChange={handleChangeClothing}
-                                    inputProps={{ 'aria-label': 'clothing' }}/>Clothing/ Shoes
-                            </TableCell>
-                        </TableRow>
-                        <TableRow >
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedc}
-                                    onChange={handleChangeCafe}
-                                    inputProps={{ 'aria-label': 'cafe' }}/>Café
-                            </TableCell>
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkeds}
-                                    onChange={handleChangeSkin}
-                                    inputProps={{ 'aria-label': 'skin' }}/>Dermatology
-                            </TableCell>
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkeda}
-                                    onChange={handleChangeAccessories}
-                                    inputProps={{ 'aria-label': 'accessories' }}/>Accessories
-                            </TableCell>
-                        </TableRow>
-                        <TableRow >
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedb}
-                                    onChange={handleChangeBakery}
-                                    inputProps={{ 'aria-label': 'bakery' }}/>Bakery
-                            </TableCell>
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedm}
-                                    onChange={handleChangeMakeup}
-                                    inputProps={{ 'aria-label': 'makeup' }}/>Makeup
-                            </TableCell>
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedp}
-                                    onChange={handleChangePharmacy}
-                                    inputProps={{ 'aria-label': 'pharmacy' }}/>Pharmacy
-                            </TableCell>
+                                </ButtonBase>
+                            ))}
+                        </div>
+                        <div>
+                            <TableContainer align={'center'} >
+                                <Table  aria-label="customized table">
+                                    <TableHead>
+                                        <TableRow >
+                                            <TableCell>Choose Food options</TableCell>
+                                            <TableCell>Choose Service Options</TableCell>
+                                            <TableCell>Choose Retail Options</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                    <TableRow >
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkedff}
+                                                onChange={handleChangeFastFood}
+                                                inputProps={{ 'aria-label': 'fastFood' }}/>Fast Food
+                                        </TableCell>
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkedh}
+                                                onChange={handleChangeHair}
+                                                inputProps={{ 'aria-label': 'hair' }}/>Hairdressing
+                                        </TableCell>
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkedcl}
+                                                onChange={handleChangeClothing}
+                                                inputProps={{ 'aria-label': 'clothing' }}/>Clothing/ Shoes
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow >
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkedc}
+                                                onChange={handleChangeCafe}
+                                                inputProps={{ 'aria-label': 'cafe' }}/>Café
+                                        </TableCell>
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkeds}
+                                                onChange={handleChangeSkin}
+                                                inputProps={{ 'aria-label': 'skin' }}/>Dermatology
+                                        </TableCell>
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkeda}
+                                                onChange={handleChangeAccessories}
+                                                inputProps={{ 'aria-label': 'accessories' }}/>Accessories
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow >
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkedb}
+                                                onChange={handleChangeBakery}
+                                                inputProps={{ 'aria-label': 'bakery' }}/>Bakery
+                                        </TableCell>
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkedm}
+                                                onChange={handleChangeMakeup}
+                                                inputProps={{ 'aria-label': 'makeup' }}/>Makeup
+                                        </TableCell>
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkedp}
+                                                onChange={handleChangePharmacy}
+                                                inputProps={{ 'aria-label': 'pharmacy' }}/>Pharmacy
+                                        </TableCell>
 
-                        </TableRow>
-                        <TableRow >
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedj}
-                                    onChange={handleChangeJuice}
-                                    inputProps={{ 'aria-label': 'juice' }}/>Drinks/ Juice
-                            </TableCell>
-                            <TableCell>
-                                <Checkbox
-                                    checked={checkedfit}
-                                    onChange={handleChangeFitnessGym}
-                                    inputProps={{ 'aria-label': 'fitnessGym' }}/>Fitness Gym
-                            </TableCell>
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedg}
-                                    onChange={handleChangeGrocery}
-                                    inputProps={{ 'aria-label': 'grocery' }}/>Grocery Store
-                            </TableCell>
-                        </TableRow>
+                                    </TableRow>
+                                    <TableRow >
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkedj}
+                                                onChange={handleChangeJuice}
+                                                inputProps={{ 'aria-label': 'juice' }}/>Drinks/ Juice
+                                        </TableCell>
+                                        <TableCell>
+                                            <Checkbox
+                                                checked={checkedfit}
+                                                onChange={handleChangeFitnessGym}
+                                                inputProps={{ 'aria-label': 'fitnessGym' }}/>Fitness Gym
+                                        </TableCell>
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkedg}
+                                                onChange={handleChangeGrocery}
+                                                inputProps={{ 'aria-label': 'grocery' }}/>Grocery Store
+                                        </TableCell>
+                                    </TableRow>
 
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedr}
-                                    onChange={handleChangeRestaurant}
-                                    inputProps={{ 'aria-label': 'restaurant' }}/>Restaurant
-                            </TableCell>
+                                    <TableCell >
+                                        <Checkbox
+                                            checked={checkedr}
+                                            onChange={handleChangeRestaurant}
+                                            inputProps={{ 'aria-label': 'restaurant' }}/>Restaurant
+                                    </TableCell>
 
-                        <TableCell>
+                                    <TableCell>
 
-                        </TableCell>
-                        <TableCell >
-                            <Checkbox
-                                checked={checkedt}
-                                onChange={handleChangeTechStore}
-                                inputProps={{ 'aria-label': 'techstore' }}/>Tech Store
-                        </TableCell>
-                        <TableRow>
-                            <TableCell >
+                                    </TableCell>
+                                    <TableCell >
+                                        <Checkbox
+                                            checked={checkedt}
+                                            onChange={handleChangeTechStore}
+                                            inputProps={{ 'aria-label': 'techstore' }}/>Tech Store
+                                    </TableCell>
+                                    <TableRow>
+                                        <TableCell >
 
-                            </TableCell>
-                            <TableCell>
-                            </TableCell>
-                            <TableCell >
-                                <Checkbox
-                                    checked={checkedd}
-                                    onChange={handleChangeDepStore}
-                                    inputProps={{ 'aria-label': 'department' }}/>Department Store
-                            </TableCell>
-                        </TableRow>
+                                        </TableCell>
+                                        <TableCell>
+                                        </TableCell>
+                                        <TableCell >
+                                            <Checkbox
+                                                checked={checkedd}
+                                                onChange={handleChangeDepStore}
+                                                inputProps={{ 'aria-label': 'department' }}/>Department Store
+                                        </TableCell>
+                                    </TableRow>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
 
-                        <TableBody>
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                        </div>
+                        <div align={'center'}>
 
-            </div>
-            <div className={classes.image} align={'center'}>
-
-                {'\n'}<br></br>
+                            {'\n'}<br></br>
 
 
-            <Button onClick={handleClickOpenSave}
-                variant="contained"
-                color="primary"
-                size="large"
-                startIcon={<SaveIcon />}
-            >
-                Save Options
-            </Button>
-                <Dialog open={openSave} onClose={handleCloseSave} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Save Options</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            Do you wish to save these options?
-                            Options can be changed again in Account
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button variant="contained" color="primary" startIcon={<SaveIcon />} onClick={handleCloseSave}>
-                            Save
-                        </Button>
+                            <Button onClick={handleCloseOptions}
+                                    variant="contained"
+                                    color="primary"
+                                    size="large"
+                                    startIcon={<SaveIcon />}
+                            >
+                                Save Options
+                            </Button>
+                            <Dialog open={openSave} onClose={handleCloseOptions} aria-labelledby="form-dialog-title">
+                                <DialogTitle id="form-dialog-title">Save Options</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        Do you wish to save these options?
+                                        Options can be changed again in Home
+                                    </DialogContentText>
+                                </DialogContent>
 
-                    </DialogActions>
-                </Dialog>
-                <br></br>
-            </div>
+                            </Dialog>
+                            <br></br>
+                        </div>
+                    </DialogContentText>
+                </DialogContent>
+            </Dialog>
             <br></br>
         </div>
         </div>
