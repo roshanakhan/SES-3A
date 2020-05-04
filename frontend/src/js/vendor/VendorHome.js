@@ -211,26 +211,27 @@ const images = [
 
 const tileData = [
     {
-        img: 'https://material-ui.com/static/images/grid-list/breakfast.jpg',
-        title: 'Breakfast',
-        author: 'jill111',
+        img: 'https://cdn.shopify.com/s/files/1/1588/9573/products/fusion-featherjet-plus-hairdryer.jpg?v=1571609010',
+        title: 'Hair Dryer',
+        author: 'John Smith',
         cols: 2,
         featured: true,
     },
     {
-        img: 'https://material-ui.com/static/images/grid-list/burgers.jpg',
-        title: 'Tasty burger',
-        author: 'director90',
+        img: 'https://kojo-designs.com/wp-content/uploads/adthrive/2012/04/IMG_1170-480x320.jpg',
+        title: 'Fabric Back Business Cards',
+        author: 'kojodesigns',
+
     },
     {
-        img: 'https://material-ui.com/static/images/grid-list/camera.jpg',
-        title: 'Camera',
+        img: 'https://www.cubicpromote.com.au/media/catalog/product/cache/5d7f6713fbe2478aec81596acac0c0c8/r/e/reusable_cork_coffee_cups.jpg',
+        title: 'Custome Reusable Coffee Cup',
         author: 'Danson67',
     },
     {
-        img: 'https://material-ui.com/static/images/grid-list/morning.jpg',
-        title: 'Morning',
-        author: 'fancycrave1',
+        img: 'https://images.seekbusiness.com.au/client/original/4093/8f78bf40-b3d5-4f05-8aae-0d6fd3f302a7.jpg',
+        title: 'M7 Sewing Machine',
+        author: 'textiles34',
         featured: true,
     },
     {
@@ -239,9 +240,9 @@ const tileData = [
         author: 'Hans',
     },
     {
-        img: 'https://material-ui.com/static/images/grid-list/honey.jpg',
-        title: 'Honey',
-        author: 'fancycravel',
+        img: 'https://sc02.alicdn.com/kf/HTB1snORsiCYBuNkSnaVq6AMsVXaK.jpg',
+        title: 'Gadali Coffee Machine',
+        author: 'lovecoffee',
     },
     {
         img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg',
@@ -250,29 +251,28 @@ const tileData = [
         cols: 2,
     },
     {
-        img: 'https://material-ui.com/static/images/grid-list/plant.jpg',
-        title: 'Water plant',
-        author: 'BkrmadtyaKarki',
+        img: 'https://images-na.ssl-images-amazon.com/images/I/71cTYNTQyZL._AC_SX425_.jpg',
+        title: 'Jumbo Assorted Metallic Thread',
+        author: 'TextilesForYou',
     },
     {
-        img: 'https://material-ui.com/static/images/grid-list/mushroom.jpg',
-        title: 'Mushrooms',
-        author: 'PublicDomainPictures',
+        img: 'https://images-na.ssl-images-amazon.com/images/I/61qZ8ziXQAL._SX342_.jpg',
+        title: 'Baking Rack',
+        author: 'BakersLife',
     },
     {
-        img: 'https://material-ui.com/static/images/grid-list/olive.jpg',
-        title: 'Olive oil',
-        author: 'congerdesign',
+        img: 'https://content.fortune.com/wp-content/uploads/2016/01/gettyimages-493749990.jpg',
+        title: 'Display Rack',
+        author: 'codesign',
     },
     {
-        img: 'https://material-ui.com/static/images/grid-list/star.jpg',
-        title: 'Sea star',
-        cols: 2,
-        author: '821292',
+        img: 'https://ae01.alicdn.com/kf/HTB1FXHiaOLrK1Rjy1zdq6ynnpXa1/Stainless-Steel-Buffet-Stove-Hotel-Buffet-Restaurant-Cafeteria-Equipment-Alcohol-Heating-Buffet-Furnace-Buffet-Container-HBF.jpg',
+        title: 'Buffet Rack',
+        author: 'foodbyme',
     },
     {
-        img: 'https://material-ui.com/static/images/grid-list/bike.jpg',
-        title: 'Bike',
+        img: 'https://mk0comforteld38jtanj.kinstacdn.com/wp-content/uploads/2020/03/ChristopherJohnSalon-Social.jpg',
+        title: 'Salon Chair and Mirror',
         author: 'danfador',
     },
 ];
