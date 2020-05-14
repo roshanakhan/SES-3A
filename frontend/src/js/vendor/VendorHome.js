@@ -24,6 +24,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import InfoIcon from '@material-ui/icons/Info';
 import SearchIcon from '@material-ui/icons/Search';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
@@ -213,66 +214,74 @@ const tileData = [
     {
         img: 'https://cdn.shopify.com/s/files/1/1588/9573/products/fusion-featherjet-plus-hairdryer.jpg?v=1571609010',
         title: 'Hair Dryer',
+        price: '$104.20',
         author: 'John Smith',
-        cols: 2,
-        featured: true,
     },
     {
         img: 'https://kojo-designs.com/wp-content/uploads/adthrive/2012/04/IMG_1170-480x320.jpg',
         title: 'Fabric Back Business Cards',
+        price: '$20.20',
         author: 'kojodesigns',
 
     },
     {
         img: 'https://www.cubicpromote.com.au/media/catalog/product/cache/5d7f6713fbe2478aec81596acac0c0c8/r/e/reusable_cork_coffee_cups.jpg',
         title: 'Custome Reusable Coffee Cup',
+        price: '$30.20',
         author: 'Danson67',
     },
     {
         img: 'https://images.seekbusiness.com.au/client/original/4093/8f78bf40-b3d5-4f05-8aae-0d6fd3f302a7.jpg',
         title: 'M7 Sewing Machine',
+        price: '$124.20',
         author: 'textiles34',
-        featured: true,
     },
     {
         img: 'https://material-ui.com/static/images/grid-list/hats.jpg',
         title: 'Hats',
+        price: '$14.20',
         author: 'Hans',
     },
     {
         img: 'https://sc02.alicdn.com/kf/HTB1snORsiCYBuNkSnaVq6AMsVXaK.jpg',
         title: 'Gadali Coffee Machine',
+        price: '$164.20',
         author: 'lovecoffee',
     },
     {
         img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg',
         title: 'Vegetables',
+        price: '$54.20',
         author: 'jill111',
-        cols: 2,
     },
     {
         img: 'https://images-na.ssl-images-amazon.com/images/I/71cTYNTQyZL._AC_SX425_.jpg',
         title: 'Jumbo Assorted Metallic Thread',
+        price: '$10.20',
         author: 'TextilesForYou',
     },
     {
         img: 'https://images-na.ssl-images-amazon.com/images/I/61qZ8ziXQAL._SX342_.jpg',
         title: 'Baking Rack',
+        price: '$99.20',
         author: 'BakersLife',
     },
     {
         img: 'https://content.fortune.com/wp-content/uploads/2016/01/gettyimages-493749990.jpg',
         title: 'Display Rack',
+        price: '$54.20',
         author: 'codesign',
     },
     {
         img: 'https://ae01.alicdn.com/kf/HTB1FXHiaOLrK1Rjy1zdq6ynnpXa1/Stainless-Steel-Buffet-Stove-Hotel-Buffet-Restaurant-Cafeteria-Equipment-Alcohol-Heating-Buffet-Furnace-Buffet-Container-HBF.jpg',
         title: 'Buffet Rack',
+        price: '$74.20',
         author: 'foodbyme',
     },
     {
         img: 'https://mk0comforteld38jtanj.kinstacdn.com/wp-content/uploads/2020/03/ChristopherJohnSalon-Social.jpg',
         title: 'Salon Chair and Mirror',
+        price: '$164.20',
         author: 'danfador',
     },
 ];
@@ -281,12 +290,21 @@ export default function Home(){
     console.log("VENDOR HOME");
     const [openSave, setOpenSave] = React.useState(false);
     const [openOptions, setOpenOptions] = React.useState(false);
+    const [openProduct, setOpenProduct] = React.useState(false);
 
     const handleClickOpenOptions = () => {
         setOpenOptions(true);
+
+    };
+
+    const handleClickOpenProduct = () => {
+        setOpenProduct(true);
     };
     const handleCloseOptions = () => {
         setOpenOptions(false);
+    };
+    const handleCloseProduct = () => {
+        setOpenProduct(false);
     };
 
     const [checkedff, setCheckedff] = React.useState(false);
@@ -377,8 +395,8 @@ export default function Home(){
                                 value={sortBy}
                                 onChange={handleChange}
                             >
-                                <MenuItem value={"min"}>Price Low</MenuItem>
-                                <MenuItem value={"max"}>Price High</MenuItem>
+                                <MenuItem value={"min"}>Price Low ($AUD)</MenuItem>
+                                <MenuItem value={"max"}>Price High ($AUD)</MenuItem>
                             </Select>
                         </FormControl>
                     </div>
@@ -401,25 +419,88 @@ export default function Home(){
 
             </AppBar>
                 <div className={classes.rootGrid} style={{width: 'auto', height: 'auto'}}>
-                    <GridList cellHeight={200} spacing={1} className={classes.gridList} cols={3}>
+                    <GridList cellHeight={200} spacing={1} className={classes.gridList} cols={4}>
                         {tileData.map(tile => (
                             <GridListTile key={tile.img} >
-                                <img src={tile.img} alt={tile.title} />
+                                <img src={tile.img} alt={tile.title} onClick={handleClickOpenProduct}
+                                />
                                 <GridListTileBar
                                     title={tile.title}
                                     titlePosition="top"
+                                    className={classes.titleBar}
+
+                                />
+
+                                <GridListTileBar
+                                    height={5}
+                                    title={tile.price}
+                                    subtitle={<span>by: {tile.author}</span>}
                                     actionIcon={
-                                        <IconButton aria-label={`favourite ${tile.title}`} className={classes.icon}>
+                                        <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
                                             <FavoriteIcon />
                                         </IconButton>
                                     }
-                                    actionPosition="left"
-                                    className={classes.titleBar}
                                 />
+
                             </GridListTile>
                         ))}
                     </GridList>
                 </div>
+
+
+
+                // Dialog for Product Details
+                <Dialog open={openProduct} onClose={handleCloseProduct} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Product Details</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            <div className={classes.rootGrid} style={{width: 'auto', height: 'auto'}}>
+                                <GridList cellHeight={300} spacing={1} className={classes.gridList} cols={1}>
+                                    {tileData.map(tile => (
+                                        <GridListTile key={tile.img} >
+                                            <img src={tile.img} alt={tile.title}
+                                            />
+                                            <GridListTileBar
+                                                title={tile.title}
+                                                titlePosition="top"
+                                                className={classes.titleBar}
+                                            />
+
+                                            <GridListTileBar
+                                                height={5}
+                                                title={tile.price}
+                                                subtitle={<span>by: {tile.author}</span>}
+                                                actionIcon={
+                                                    <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
+                                                        <FavoriteIcon />
+                                                    </IconButton>
+                                                }
+                                            />
+
+                                        </GridListTile>
+                                    ))}
+                                </GridList>
+                            </div>
+                            <div className={classes.root}>
+
+                                <Button onClick={handleCloseProduct}
+                                        variant="contained"
+                                        color="primary"
+                                >Close
+                                </Button>
+                                <br></br>
+                            </div>
+                        </DialogContentText>
+                    </DialogContent>
+                </Dialog>
+
+
+
+
+
+
+
+
 
                 <Dialog open={openOptions} onClose={handleCloseOptions} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Change Business Options</DialogTitle>
