@@ -36,6 +36,7 @@ import Select from '@material-ui/core/Select';
 
 
 const useStyles = makeStyles((theme) => ({
+
     root: {
         '& > *': {
             margin: theme.spacing(1),
@@ -59,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
         background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     },
     icon: {
-        color: 'white',
+        color: '#CACACB', // Was white
     },
 
     root1: {
@@ -118,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            width: '12ch',
+            width: '15ch', // Was 12
             '&:focus': {
                 width: '20ch',
             },
@@ -381,12 +382,15 @@ export default function Home(){
             <div >
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-                <AppBar position="static">
+                <AppBar position="static" >
                 <Tabs
                     color="primary"
                 >Change Business Options
                     <Tab label="Change Business Options" onClick={handleClickOpenOptions}/>
-                    <Tab icon={<FavoriteIcon />} aria-label="favorite" />
+                    <Tab label="" />
+                    <IconButton className={classes.icon}>
+                        <FavoriteIcon />
+                    </IconButton>
                     <Tab label="" />
                     <div>
                         <FormControl className={classes.formControl} >
@@ -416,7 +420,6 @@ export default function Home(){
                         </div>
                     </Toolbar>
                 </Tabs>
-
             </AppBar>
                 <div className={classes.rootGrid} style={{width: 'auto', height: 'auto'}}>
                     <GridList cellHeight={200} spacing={1} className={classes.gridList} cols={4}>
@@ -448,38 +451,12 @@ export default function Home(){
                 </div>
 
 
-
-                // Dialog for Product Details
                 <Dialog open={openProduct} onClose={handleCloseProduct} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Product Details</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            <div className={classes.rootGrid} style={{width: 'auto', height: 'auto'}}>
-                                <GridList cellHeight={300} spacing={1} className={classes.gridList} cols={1}>
-                                    {tileData.map(tile => (
-                                        <GridListTile key={tile.img} >
-                                            <img src={tile.img} alt={tile.title}
-                                            />
-                                            <GridListTileBar
-                                                title={tile.title}
-                                                titlePosition="top"
-                                                className={classes.titleBar}
-                                            />
+                            <div>
 
-                                            <GridListTileBar
-                                                height={5}
-                                                title={tile.price}
-                                                subtitle={<span>by: {tile.author}</span>}
-                                                actionIcon={
-                                                    <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                                                        <FavoriteIcon />
-                                                    </IconButton>
-                                                }
-                                            />
-
-                                        </GridListTile>
-                                    ))}
-                                </GridList>
                             </div>
                             <div className={classes.root}>
 

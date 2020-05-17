@@ -6,8 +6,9 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import {Link} from "react-router-dom";
 import ListItemText from "@material-ui/core/ListItemText";
+import Logo from "../../image/Logo.png";
 
-const drawerWidth = 240;
+const drawerWidth = 210;// Was 240
 
 export const layoutStyles = makeStyles((theme) => ({
     root: {
@@ -38,8 +39,15 @@ export const layoutStyles = makeStyles((theme) => ({
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        padding: theme.spacing(0), //Was 3
     },
+    title: {
+        flexGrow: 1,
+    },
+    logo: {
+        width: drawerWidth,
+        height: 58,
+    }
 }));
 
 export const logout = (props) => {
@@ -53,7 +61,9 @@ export const logout = (props) => {
 export const drawer = (classes, drawerListObject, onItemClick) => {
     return(
         <div>
-            <div className={classes.toolbar}/>
+            <div className={classes.toolbar}>
+                <img src={Logo} alt="Logo" className={classes.logo}/>
+            </div>
             <Divider/>
             <List>
                 {drawerListObject.map((object, index) => (
