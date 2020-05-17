@@ -6,7 +6,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import AddIcon from '@material-ui/icons/Add';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -19,19 +18,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import PropTypes from "prop-types";
 import SearchIcon from '@material-ui/icons/Search';
 import clsx from "clsx";
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import MenuIcon from '@material-ui/icons/Menu';
 import InputBase from "@material-ui/core/InputBase";
 import AppBar from "@material-ui/core/AppBar";
-
 
 function createData(did, purchaseDate, productName, quantity, buyer,  address, postCode, ) {
     return { did, purchaseDate, productName, quantity, buyer,  address, postCode, };
@@ -39,7 +34,7 @@ function createData(did, purchaseDate, productName, quantity, buyer,  address, p
 // Check how to organise by date
 const rows = [
     createData(1, '20-May-2020', 'Rice 4KG Bag', 3, 'buyer',  '20 Washington Rd, Chinatown', 2133),
-    createData(2, '7 Apr 2020', 'Flour 3KG Bag', 5, 'buyer',  '20 Washington Rd, Chinatown', 2134),
+    createData(2, '7-Apr-2020', 'Flour 3KG Bag', 5, 'buyer',  '20 Washington Rd, Chinatown', 2134),
     createData(3, '7 Apr 2020', 'Cooking Pans',12, 'buyer', '20 Washington Rd, Chinatown', 2133),
     createData(4, '2 May 2020', 'Red Stools', 8, 'buyer', '20 Washington Rd, Chinatown', 2170),
     createData(5, '7 Mar 2020', 'Square Mirror 40cm x 40cm', 30 , 'buyer',  '20 Washington Rd, Chinatown', 2322),
@@ -60,6 +55,24 @@ function descendingComparator(a, b, orderBy) {
     }
     return 0;
 }
+//////////// new for date - still doesn't work
+function desc(a, b, orderBy) {
+    console.log(a.purchaseDate)
+    if (b.purchaseDate < a.purchaseDate) {
+        console.log(b.purchaseDate)
+        return -1;
+    }
+    if (b.purchaseDate > a.purchaseDate) {
+        return 1;
+    }
+    return 0;
+}
+
+function getSorting(order, orderBy) {
+    return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) =>
+        -desc(a, b, orderBy);
+}
+//////////////
 
 function getComparator(order, orderBy) {
     return order === 'desc'
@@ -186,6 +199,7 @@ const EnhancedTableToolbar = (props) => {
                     <Button aria-label="Delivered" size="large" color="primary" variant="outlined">
                         <LocalShippingIcon />
                     </Button>
+
                 </Tooltip>
             ) : (
 
@@ -249,9 +263,9 @@ const useStyles = makeStyles((theme) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            width: '12ch', // Was 12
+            width: '15ch', // Was 12
             '&:focus': {
-                width: '15ch',
+                width: '20ch',
             },
         },
     },
@@ -817,7 +831,11 @@ export default function Home(){
                     </DialogContentText>
                 </DialogContent>
             </Dialog>
+
             <br></br>
+
+
+
         </div>
             {'\n'}<br></br>
            <div>

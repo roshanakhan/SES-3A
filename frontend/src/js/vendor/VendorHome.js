@@ -215,7 +215,7 @@ const tileData = [
     {
         img: 'https://cdn.shopify.com/s/files/1/1588/9573/products/fusion-featherjet-plus-hairdryer.jpg?v=1571609010',
         title: 'Hair Dryer',
-        price: '$104.20',
+        price: '$104.20 -- 20% discount',
         author: 'John Smith',
     },
     {
@@ -235,6 +235,7 @@ const tileData = [
         img: 'https://images.seekbusiness.com.au/client/original/4093/8f78bf40-b3d5-4f05-8aae-0d6fd3f302a7.jpg',
         title: 'M7 Sewing Machine',
         price: '$124.20',
+        discount: '20%,',
         author: 'textiles34',
     },
     {
@@ -253,6 +254,7 @@ const tileData = [
         img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg',
         title: 'Vegetables',
         price: '$54.20',
+        discount: '20%,',
         author: 'jill111',
     },
     {
@@ -271,6 +273,7 @@ const tileData = [
         img: 'https://content.fortune.com/wp-content/uploads/2016/01/gettyimages-493749990.jpg',
         title: 'Display Rack',
         price: '$54.20',
+        discount: '20%,',
         author: 'codesign',
     },
     {
@@ -435,9 +438,9 @@ export default function Home(){
                                 />
 
                                 <GridListTileBar
-                                    height={5}
+                                    height={4}
                                     title={tile.price}
-                                    subtitle={<span>by: {tile.author}</span>}
+                                    subtitle={<span>By: {tile.author} </span>}
                                     actionIcon={
                                         <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
                                             <FavoriteIcon />
@@ -450,13 +453,12 @@ export default function Home(){
                     </GridList>
                 </div>
 
-
                 <Dialog open={openProduct} onClose={handleCloseProduct} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Product Details</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
                             <div>
-
+                                Product image
                             </div>
                             <div className={classes.root}>
 
