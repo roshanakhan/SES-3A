@@ -33,6 +33,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Axios from "axios";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -211,90 +212,12 @@ const images = [
     },
 ];
 
-const tileData = [
-    {
-        img: 'https://cdn.shopify.com/s/files/1/1588/9573/products/fusion-featherjet-plus-hairdryer.jpg?v=1571609010',
-        title: 'Hair Dryer',
-        price: '$104.20 -- 20% discount',
-        author: 'John Smith',
-    },
-    {
-        img: 'https://kojo-designs.com/wp-content/uploads/adthrive/2012/04/IMG_1170-480x320.jpg',
-        title: 'Fabric Back Business Cards',
-        price: '$20.20',
-        author: 'kojodesigns',
-
-    },
-    {
-        img: 'https://www.cubicpromote.com.au/media/catalog/product/cache/5d7f6713fbe2478aec81596acac0c0c8/r/e/reusable_cork_coffee_cups.jpg',
-        title: 'Custome Reusable Coffee Cup',
-        price: '$30.20',
-        author: 'Danson67',
-    },
-    {
-        img: 'https://images.seekbusiness.com.au/client/original/4093/8f78bf40-b3d5-4f05-8aae-0d6fd3f302a7.jpg',
-        title: 'M7 Sewing Machine',
-        price: '$124.20',
-        discount: '20%,',
-        author: 'textiles34',
-    },
-    {
-        img: 'https://material-ui.com/static/images/grid-list/hats.jpg',
-        title: 'Hats',
-        price: '$14.20',
-        author: 'Hans',
-    },
-    {
-        img: 'https://sc02.alicdn.com/kf/HTB1snORsiCYBuNkSnaVq6AMsVXaK.jpg',
-        title: 'Gadali Coffee Machine',
-        price: '$164.20',
-        author: 'lovecoffee',
-    },
-    {
-        img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg',
-        title: 'Vegetables',
-        price: '$54.20',
-        discount: '20%,',
-        author: 'jill111',
-    },
-    {
-        img: 'https://images-na.ssl-images-amazon.com/images/I/71cTYNTQyZL._AC_SX425_.jpg',
-        title: 'Jumbo Assorted Metallic Thread',
-        price: '$10.20',
-        author: 'TextilesForYou',
-    },
-    {
-        img: 'https://images-na.ssl-images-amazon.com/images/I/61qZ8ziXQAL._SX342_.jpg',
-        title: 'Baking Rack',
-        price: '$99.20',
-        author: 'BakersLife',
-    },
-    {
-        img: 'https://content.fortune.com/wp-content/uploads/2016/01/gettyimages-493749990.jpg',
-        title: 'Display Rack',
-        price: '$54.20',
-        discount: '20%,',
-        author: 'codesign',
-    },
-    {
-        img: 'https://ae01.alicdn.com/kf/HTB1FXHiaOLrK1Rjy1zdq6ynnpXa1/Stainless-Steel-Buffet-Stove-Hotel-Buffet-Restaurant-Cafeteria-Equipment-Alcohol-Heating-Buffet-Furnace-Buffet-Container-HBF.jpg',
-        title: 'Buffet Rack',
-        price: '$74.20',
-        author: 'foodbyme',
-    },
-    {
-        img: 'https://mk0comforteld38jtanj.kinstacdn.com/wp-content/uploads/2020/03/ChristopherJohnSalon-Social.jpg',
-        title: 'Salon Chair and Mirror',
-        price: '$164.20',
-        author: 'danfador',
-    },
-];
-
 export default function Home(){
     console.log("VENDOR HOME");
     const [openSave, setOpenSave] = React.useState(false);
     const [openOptions, setOpenOptions] = React.useState(false);
     const [openProduct, setOpenProduct] = React.useState(false);
+    const [tileData, setTileData] = React.useState([]);
 
     const handleClickOpenOptions = () => {
         setOpenOptions(true);
@@ -305,6 +228,16 @@ export default function Home(){
         setOpenProduct(true);
     };
     const handleCloseOptions = () => {
+        console.log("Category: ", category);
+        Axios.get("http://localhost:8080/GetProductByCategory",
+                            { headers: {'Content-Type': 'application/json', 'email': "vendor@gmail", 'category': category}})
+                            .then( (res) => {
+                                console.log("Response: ",res);
+                                setTileData(res.data.products);
+                            })
+                            .catch( (err) => {
+                                console.log("Error: ", err);
+                            });
         setOpenOptions(false);
     };
     const handleCloseProduct = () => {
@@ -327,8 +260,12 @@ export default function Home(){
     const [checkedd, setCheckedd] = React.useState(false);
     const [checkedfit, setCheckedfit] = React.useState(false);
 
+    const [category, setCategory] = React.useState("");
+
     const handleChangeFastFood = (event) => {
+        console.log("Event:", event.target.value);
         setCheckedff(event.target.checked);
+        setCategory(event.target.value);
     };
     const handleChangeCafe = (event) => {
         setCheckedc(event.target.checked);
@@ -427,8 +364,9 @@ export default function Home(){
                 <div className={classes.rootGrid} style={{width: 'auto', height: 'auto'}}>
                     <GridList cellHeight={200} spacing={1} className={classes.gridList} cols={4}>
                         {tileData.map(tile => (
-                            <GridListTile key={tile.img} >
-                                <img src={tile.img} alt={tile.title} onClick={handleClickOpenProduct}
+                            <GridListTile key="https://firebasestorage.googleapis.com/v0/b/ses3a-be963.appspot.com/o/product%20photos%2Ffusion-featherjet-plus-hairdryer.jpg?alt=media&token=a6d56af5-edb1-47da-9e7a-674c94e2a637" >
+                                <img src="https://firebasestorage.googleapis.com/v0/b/ses3a-be963.appspot.com/o/product%20photos%2Ffusion-featherjet-plus-hairdryer.jpg?alt=media&token=a6d56af5-edb1-47da-9e7a-674c94e2a637"
+                                     alt={tile.productName} onClick={handleClickOpenProduct}
                                 />
                                 <GridListTileBar
                                     title={tile.title}
@@ -439,10 +377,10 @@ export default function Home(){
 
                                 <GridListTileBar
                                     height={4}
-                                    title={tile.price}
-                                    subtitle={<span>By: {tile.author} </span>}
+                                    title={tile.productPrice}
+                                    subtitle={<span>By: {tile.supplierEmail} </span>}
                                     actionIcon={
-                                        <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
+                                        <IconButton aria-label={`info about ${tile.productName}`} className={classes.icon}>
                                             <FavoriteIcon />
                                         </IconButton>
                                     }
@@ -534,6 +472,7 @@ export default function Home(){
                                                     <Checkbox
                                                         checked={checkedff}
                                                         onChange={handleChangeFastFood}
+                                                        value="fastfood"
                                                         inputProps={{ 'aria-label': 'fastFood' }}/>Fast Food
                                                 </TableCell>
                                                 <TableCell >
